@@ -1,0 +1,12 @@
+-r requirements-qsar.txt
+jax==0.4.28
+jaxlib==0.4.28
+flax==0.8.3
+optax==0.2.2
+chex==0.1.86
+ml-collections==0.1.1
+orbax-checkpoint==0.5.11
+tensorstore==0.1.59
+Levenshtein==0.25.1
+PyYAML==6.0.1
+seaborn==0.13.2

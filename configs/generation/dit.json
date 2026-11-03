@@ -1,0 +1,93 @@
+{
+  "global_config": {
+    "bf16_flag": true,
+    "dropout_flag": true,
+    "norm_method": "layernorm",
+    "norm_small": 1e-06,
+    "remat_flag": false,
+    "sparse_flag": false,
+    "test_flag": false
+  },
+  "net_config": {
+    "dit_block": {
+      "adaLN": {
+        "activation": "silu",
+        "hidden_size": 512
+      },
+      "attention": {
+        "attention_embedding": {
+          "attention_type": "self",
+          "dim_feature": 512,
+          "embedding_pair_flag": false,
+          "kernel_initializer": "glorot_uniform",
+          "n_head": 16
+        },
+        "attention_kernel": {
+          "attention_type": "self",
+          "block_k": 64,
+          "block_q": 64,
+          "causal_flag": false,
+          "flash_attention_flag": false,
+          "has_bias": false
+        },
+        "dropout_rate": 0.01,
+        "hyper_attention_embedding": {
+          "kernel_type": "rope",
+          "split_rope_flag": true
+        },
+        "hyper_attention_flag": true,
+        "post_attention": {
+          "gating_flag": false,
+          "out_dim": 512
+        }
+      },
+      "transition": {
+        "dropout_rate": 0.01,
+        "transition": {
+          "act_fn": "gelu",
+          "kernel_initializer": "xavier_uniform",
+          "method": "glu",
+          "transition_factor": 4
+        }
+      }
+    },
+    "dit_output": {
+      "hidden_size": 512
+    },
+    "emb_label_flag": true,
+    "hidden_size": 512,
+    "label_embedding": {
+      "clip_distance": false,
+      "emb_max": 1.0,
+      "emb_min": 0.0,
+      "emb_sigma": 0.00390625,
+      "hidden_size": 512,
+      "label_drop_flag": true,
+      "label_drop_rate": 0.2,
+      "num_basis": 256
+    },
+    "n_iterations": 12,
+    "time_embedding": {
+      "frequency_embedding_size": 512,
+      "hidden_size": 512
+    }
+  },
+  "train_config": {
+    "diffusion_timesteps": 500,
+    "learning_rate": {
+      "decay_steps": 500000,
+      "max": 0.0002,
+      "min": 1e-05,
+      "warmup_steps": 10000
+    },
+    "weight_decay": 0.0001
+  },
+  "data_config": {
+    "batch_size_device": 16,
+    "force_drop_rate": 0.1,
+    "latent_dim": 32,
+    "n_query_tokens": 16,
+    "pre_load_int": 1,
+    "seed": 8888
+  }
+}

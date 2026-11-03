@@ -1,0 +1,22 @@
+{
+  "data_path": "properties/tasks/dielectric_constant/dielectric_constant_observations_with_smiles.csv",
+  "output_path": "runs/dielectric_constant/ecfp/model.pt",
+  "smiles_column": "canonical_smiles",
+  "target_columns": [
+    "property_value_si"
+  ],
+  "epochs": 300,
+  "batch_size": 32,
+  "learning_rate": 0.001,
+  "weight_decay": 1e-05,
+  "val_size": 0.2,
+  "seed": 2026,
+  "radius": 2,
+  "n_bits": 2048,
+  "use_chirality": false,
+  "hidden_dim": 512,
+  "num_layers": 3,
+  "readout_dim": 256,
+  "dropout": 0.1,
+  "num_workers": 0
+}

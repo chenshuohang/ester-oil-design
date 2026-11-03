@@ -1,0 +1,200 @@
+{
+  "global_config": {
+    "bf16_flag": true,
+    "dropout_flag": true,
+    "norm_method": "layernorm",
+    "norm_small": 1e-06,
+    "sparse_flag": false
+  },
+  "net_config": {
+    "decoder": {
+      "concat_query_flag": true,
+      "dim_feature": 384,
+      "hyper_lora_flag": false,
+      "lora_config": null,
+      "norm_method": "rmsnorm",
+      "num_groups": 4,
+      "num_prefix_tokens": 16,
+      "settings_config": {
+        "num_prefix_tokens": 16,
+        "num_sink_tokens": 1,
+        "vocab_size": 256
+      },
+      "transformer": {
+        "adaLN": {
+          "activation": "silu",
+          "hidden_size": 384,
+          "norm_method": "rmsnorm"
+        },
+        "attention": {
+          "attention_embedding": {
+            "attention_type": "self",
+            "dim_feature": 384,
+            "embedding_pair_flag": false,
+            "kernel_initializer": "glorot_uniform",
+            "n_head": 12
+          },
+          "attention_kernel": {
+            "attention_type": "self",
+            "block_k": 64,
+            "block_q": 64,
+            "causal_flag": true,
+            "flash_attention_flag": false,
+            "has_bias": false
+          },
+          "dropout_rate": 0.01,
+          "hyper_attention_embedding": {
+            "kernel_type": "rope",
+            "split_rope_flag": true
+          },
+          "hyper_attention_flag": true,
+          "post_attention": {
+            "gating_flag": false,
+            "out_dim": 384
+          }
+        },
+        "n_layers": 8,
+        "transition": {
+          "dropout_rate": 0.01,
+          "transition": {
+            "act_fn": "gelu",
+            "kernel_initializer": "xavier_uniform",
+            "method": "glu",
+            "transition_factor": 2
+          }
+        }
+      }
+    },
+    "encoder": {
+      "embedding": {
+        "atom_embedding": {
+          "n_aromaticity": 2,
+          "n_atom_type": 64,
+          "n_chiral": 4,
+          "n_formal_charge": 3,
+          "n_hybridization": 9,
+          "n_num_H": 5
+        },
+        "bond_embedding": {
+          "n_bond_type": 22,
+          "n_conjugated": 3,
+          "n_graph_distance": 64,
+          "n_in_ring": 3,
+          "n_stereo": 7
+        }
+      },
+      "molct": {
+        "feat_transformer": {
+          "atom_act_dim": 256,
+          "pair_act_dim": 128
+        },
+        "graph_transformer": {
+          "edge_update": {
+            "dropout_rate": 0.01,
+            "outer_product": {
+              "has_bias": true,
+              "outerproduct_dim": 32,
+              "output_dim": 128
+            },
+            "transition": {
+              "act_fn": "gelu",
+              "kernel_initializer": "xavier_uniform",
+              "method": "glu",
+              "transition_factor": 2
+            }
+          },
+          "n_pair_interactions": 1,
+          "node_update": {
+            "attention_embedding": {
+              "attention_type": "self",
+              "dim_feature": 256,
+              "embedding_pair_flag": true,
+              "kernel_initializer": "glorot_uniform",
+              "n_head": 8
+            },
+            "attention_kernel": {
+              "attention_type": "self",
+              "block_k": 64,
+              "block_q": 64,
+              "causal_flag": false,
+              "flash_attention_flag": false,
+              "has_bias": true
+            },
+            "dropout_rate": 0.01,
+            "hyper_attention_embedding": {
+              "dim_r": 4,
+              "kernel_type": "hak"
+            },
+            "hyper_attention_flag": false,
+            "post_attention": {
+              "gating_flag": false,
+              "out_dim": 256
+            },
+            "transition": {
+              "act_fn": "gelu",
+              "kernel_initializer": "xavier_uniform",
+              "method": "glu",
+              "transition_factor": 2
+            }
+          }
+        },
+        "n_layers": 3
+      },
+      "num_prefix_atoms": 17
+    },
+    "latent_dim": 32,
+    "num_sink_tokens": 1,
+    "projector": {
+      "activation": "silu",
+      "dropout_rate": 0.01,
+      "output_sizes": [
+        128,
+        64
+      ]
+    }
+  },
+  "train_config": {
+    "contrastive": {
+      "alpha": 2,
+      "t": 2
+    },
+    "learning_rate": {
+      "decay_steps": 100000,
+      "max": 0.0002,
+      "min": 2e-05,
+      "warmup_steps": 10000
+    },
+    "loss_weights": {
+      "align": 0.05,
+      "mmd": 0.01,
+      "reconstruct": 1.0,
+      "uniformity": 0.05
+    },
+    "mmd_sigma": [
+      8,
+      32,
+      64
+    ],
+    "settings": {
+      "num_prefix_tokens": 16,
+      "num_sink_tokens": 1,
+      "vocab_size": 256
+    },
+    "weight_decay": 0.0001
+  },
+  "data_config": {
+    "n_workers": 4,
+    "n_pad_atom": 128,
+    "n_pad_token": 256,
+    "n_query_tokens": 16,
+    "n_repeat_k": 1,
+    "bos_token_id": 0,
+    "eos_token_id": 1,
+    "mask_token_id": 2,
+    "seed": 8888,
+    "dtype": "int16",
+    "sampling_method": "random",
+    "batch_size_device": 32,
+    "pre_load_int": 20
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "dielectric_constant/communicative_mpnn": {
+    "module": "qsar.tasks.dielectric_constant.train.train_mpnn_baselines",
+    "data": "properties/tasks/dielectric_constant/dielectric_constant_observations_with_smiles.csv"
+  },
+  "dielectric_constant/directed_mpnn": {
+    "module": "qsar.tasks.dielectric_constant.train.train_mpnn_baselines",
+    "data": "properties/tasks/dielectric_constant/dielectric_constant_observations_with_smiles.csv"
+  },
+  "dielectric_constant/ecfp": {
+    "module": "qsar.tasks.dielectric_constant.train.train_ecfp",
+    "data": "properties/tasks/dielectric_constant/dielectric_constant_observations_with_smiles.csv"
+  },
+  "dielectric_constant/schnet": {
+    "module": "qsar.tasks.dielectric_constant.train.train_schnet",
+    "data": "properties/tasks/dielectric_constant/dielectric_constant_observations_with_smiles.csv"
+  },
+  "dynamic_viscosity/communicative_mpnn": {
+    "module": "qsar.tasks.dynamic_viscosity.train.train_temperature_mpnn",
+    "data": "properties/tasks/dynamic_viscosity/dynamic_viscosity_observations_with_smiles.csv"
+  },
+  "dynamic_viscosity/conditional_communicative_mpnn": {
+    "module": "qsar.tasks.dynamic_viscosity.train.train_conditional_mpnn",
+    "data": "properties/tasks/dynamic_viscosity/dynamic_viscosity_observations_with_smiles.csv"
+  },
+  "dynamic_viscosity/directed_mpnn": {
+    "module": "qsar.tasks.dynamic_viscosity.train.train_temperature_mpnn",
+    "data": "properties/tasks/dynamic_viscosity/dynamic_viscosity_observations_with_smiles.csv"
+  },
+  "dynamic_viscosity/ecfp": {
+    "module": "qsar.tasks.dynamic_viscosity.train.train_ecfp",
+    "data": "properties/tasks/dynamic_viscosity/dynamic_viscosity_observations_with_smiles.csv"
+  },
+  "dynamic_viscosity/schnet": {
+    "module": "qsar.tasks.dynamic_viscosity.train.train_schnet",
+    "data": "properties/tasks/dynamic_viscosity/dynamic_viscosity_observations_with_smiles.csv"
+  },
+  "flash_point/communicative_mpnn": {
+    "module": "qsar.tasks.flash_point.train.train_mpnn_baselines",
+    "data": "properties/processed/oil_like_multitask.csv"
+  },
+  "flash_point/directed_mpnn": {
+    "module": "qsar.tasks.flash_point.train.train_mpnn_baselines",
+    "data": "properties/processed/oil_like_multitask.csv"
+  },
+  "flash_point/ecfp": {
+    "module": "qsar.tasks.flash_point.train.train_ecfp",
+    "data": "properties/processed/oil_like_multitask.csv"
+  },
+  "flash_point/schnet": {
+    "module": "qsar.tasks.flash_point.train.train_schnet",
+    "data": "properties/processed/oil_like_multitask.csv"
+  }
+}

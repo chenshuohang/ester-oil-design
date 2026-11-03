@@ -1,0 +1,20 @@
+{
+  "model": "directed",
+  "data_path": "properties/processed/oil_like_multitask.csv",
+  "smiles_column": "canonical_smiles",
+  "target_columns": [
+    "flash_point_K"
+  ],
+  "epochs": 300,
+  "batch_size": 32,
+  "learning_rate": 0.001,
+  "weight_decay": 1e-05,
+  "val_size": 0.2,
+  "seed": 2026,
+  "hidden_dim": 128,
+  "num_layers": 4,
+  "readout_dim": 256,
+  "dropout": 0.1,
+  "num_workers": 0,
+  "output_path": "runs/flash_point/directed_mpnn/model.pt"
+}

@@ -1,0 +1,20 @@
+{
+  "model": "communicative",
+  "data_path": "properties/tasks/dielectric_constant/dielectric_constant_observations_with_smiles.csv",
+  "output_path": "runs/dielectric_constant/communicative_mpnn/model.pt",
+  "smiles_column": "canonical_smiles",
+  "target_columns": [
+    "property_value_si"
+  ],
+  "epochs": 300,
+  "batch_size": 32,
+  "learning_rate": 0.001,
+  "weight_decay": 1e-05,
+  "val_size": 0.2,
+  "seed": 2026,
+  "hidden_dim": 128,
+  "num_layers": 4,
+  "readout_dim": 256,
+  "dropout": 0.1,
+  "num_workers": 0
+}

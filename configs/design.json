@@ -1,0 +1,60 @@
+{
+  "total_step": 10,
+  "npops": 128,
+  "num_latent_tokens": 16,
+  "eq_steps": 10,
+  "noffs": 8,
+  "random_seed": 42,
+  "dim_latent": 32,
+  "beam_size": 4,
+  "sampling_method": "beam",
+  "dit_config_path": "../runs/generation/dit/config.pkl",
+  "dit_params_path": "../runs/generation/dit/params_final.pkl",
+  "vae_config_path": "../runs/generation/ae/config.pkl",
+  "vae_params_path": "../runs/generation/ae/params_final.pkl",
+  "alphabet_path": "../runs/generation/alphabet.pkl",
+  "init_smiles": "CCCCCCCC(=O)OCC",
+  "substructure_smarts": "[#6](=[#8])-[#8]",
+  "t_min": 25,
+  "t_max": 125,
+  "diffusion_config": {
+    "learning_rate": 0.0001,
+    "optimization_steps": 50,
+    "eq_steps": 10
+  },
+  "tanimoto_threshold": 0.5,
+  "prop_ranges": {
+    "n_double_bonds": [
+      1.0,
+      4.0
+    ]
+  },
+  "qsar_device": "cpu",
+  "qsar_batch_size": 64,
+  "qsar_objectives": [
+    {
+      "name": "Flash_Point",
+      "kind": "scalar",
+      "checkpoint": "../data/pretrained/qsar/flash_point/schnet.pt",
+      "target_key": "flash_point_K",
+      "direction": "maximize"
+    },
+    {
+      "name": "Dynamic_Viscosity",
+      "kind": "viscosity",
+      "checkpoint": "../data/pretrained/qsar/dynamic_viscosity/conditional_communicative_mpnn.pt",
+      "direction": "minimize",
+      "temperature_K": 298.15,
+      "pressure_kPa": 101.325,
+      "output_transform": "exp"
+    },
+    {
+      "name": "Dielectric_Constant",
+      "kind": "scalar",
+      "checkpoint": "../data/pretrained/qsar/dielectric_constant/schnet.pt",
+      "target_key": "property_value_si",
+      "direction": "minimize"
+    }
+  ],
+  "selection_algorithm": "nsga2"
+}

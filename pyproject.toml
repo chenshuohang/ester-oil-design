@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ester-oil-design"
+version = "1.0.0"
+description = "Reproducible ester-oil property prediction and molecular generation"
+requires-python = ">=3.11,<3.12"
+readme = "README.md"
+
+[project.scripts]
+ester-oil = "ester_oil.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["ester_oil*", "qsar*", "molsculptor*", "cases*"]
+namespaces = true

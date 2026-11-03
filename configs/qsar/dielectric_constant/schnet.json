@@ -1,0 +1,23 @@
+{
+  "data_path": "properties/tasks/dielectric_constant/dielectric_constant_observations_with_smiles.csv",
+  "output_path": "runs/dielectric_constant/schnet/model.pt",
+  "smiles_column": "canonical_smiles",
+  "target_column": "property_value_si",
+  "epochs": 300,
+  "batch_size": 32,
+  "learning_rate": 0.001,
+  "weight_decay": 1e-05,
+  "val_size": 0.2,
+  "seed": 2026,
+  "hidden_dim": 128,
+  "num_layers": 4,
+  "num_gaussians": 50,
+  "cutoff": 5.0,
+  "readout_dim": 256,
+  "dropout": 0.1,
+  "max_atomic_number": 100,
+  "no_add_hydrogens": false,
+  "conformer_seed": 2026,
+  "optimize_steps": 200,
+  "num_workers": 0
+}
